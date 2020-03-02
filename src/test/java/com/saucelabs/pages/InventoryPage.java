@@ -8,7 +8,7 @@ public class InventoryPage extends BasePage {
 
 
     public InventoryPage(WebDriver driver) {
-        this.driver = driver;
+        super(driver);
     }
 
     public Boolean isOnPage() {

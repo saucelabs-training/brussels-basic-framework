@@ -10,20 +10,30 @@ public class HomePage extends BasePage {
     private By username = By.id("user-name");
     private By password = By.id("password");
     private By submit = By.className("btn_action");
+    static private String url = "https://www.saucedemo.com/";
 
     public static HomePage visit(WebDriver driver) {
-        driver.get("https://www.saucedemo.com/");
+        driver.get(url);
         return new HomePage(driver);
     }
 
     public HomePage(WebDriver driver) {
-        this.driver = driver;
+        super(driver);
+    }
+
+    public void signInSuccessfully(User user) {
+        signIn(user);
+        wait.until(x -> !isOnPage());
     }
 
     public void signIn(User user) {
         sendKeys(this.username, user.getUsername());
         sendKeys(this.password, user.getPassword());
         click(this.submit);
+    }
+
+    public boolean isOnPage() {
+        return driver.getCurrentUrl().equals(url);
     }
 
     public WebElement getUsername() {

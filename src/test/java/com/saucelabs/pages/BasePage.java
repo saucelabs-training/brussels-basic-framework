@@ -8,6 +8,12 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class BasePage {
     WebDriver driver;
+    WebDriverWait wait;
+
+    public BasePage(WebDriver driver) {
+        this.driver = driver;
+        this.wait = new WebDriverWait(driver, 30);
+    }
 
     void click(By locator) {
         while (true) {
@@ -36,7 +42,6 @@ public class BasePage {
     }
 
     private void waitForElement(By locator) {
-        WebDriverWait wait = new WebDriverWait(driver, 30);
         wait.until(ExpectedConditions.presenceOfElementLocated(locator));
     }
 }
