@@ -11,7 +11,7 @@ import test.java.com.saucelabs.pages.InventoryPage;
 class OpinionatedMethodTest extends TestEager {
     @Test
     @DisplayName("Using Opinionated Page Object Method")
-    void opinionated() {
+    void opinionated() throws Exception {
         User user = User.valid();
         HomePage homePage = HomePage.visit(driver);
         homePage.signInSuccessfully(user);

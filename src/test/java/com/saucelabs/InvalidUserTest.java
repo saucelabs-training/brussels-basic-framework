@@ -11,7 +11,7 @@ import test.java.com.saucelabs.pages.InventoryPage;
 class InvalidUserTest extends TestEager {
     @Test
     @DisplayName("Expecting Success From Invalid User")
-    void opinionated() {
+    void opinionated() throws Exception {
         User user = User.invalid();
         HomePage homePage = HomePage.visit(driver);
         homePage.signInSuccessfully(user);

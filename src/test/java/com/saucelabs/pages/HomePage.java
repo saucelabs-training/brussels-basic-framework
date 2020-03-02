@@ -1,8 +1,6 @@
 package test.java.com.saucelabs.pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import test.java.com.saucelabs.data.User;
 
 public class HomePage extends BasePage {
@@ -10,6 +8,7 @@ public class HomePage extends BasePage {
     private By username = By.id("user-name");
     private By password = By.id("password");
     private By submit = By.className("btn_action");
+    private By error = By.cssSelector("[data-test=error]");
     static private String url = "https://www.saucedemo.com/";
 
     public static HomePage visit(WebDriver driver) {
@@ -21,9 +20,14 @@ public class HomePage extends BasePage {
         super(driver);
     }
 
-    public void signInSuccessfully(User user) {
+    public void signInSuccessfully(User user) throws Exception {
         signIn(user);
-        wait.until(x -> !isOnPage());
+        try {
+            wait.until(x -> !isOnPage());
+        } catch (TimeoutException e) {
+            String errorMessage = driver.findElement(error).getText();
+            throw new Exception("Expected Form to be submitted, but it was not; found error: \"" + errorMessage + "\"");
+        }
     }
 
     public void signIn(User user) {
