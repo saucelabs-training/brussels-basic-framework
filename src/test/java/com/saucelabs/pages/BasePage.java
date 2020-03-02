@@ -31,6 +31,10 @@ public class BasePage {
         }
     }
 
+    boolean exists(By locator) {
+        return driver.findElements(locator).size() > 0;
+    }
+
     private void waitForElement(By locator) {
         WebDriverWait wait = new WebDriverWait(driver, 30);
         wait.until(ExpectedConditions.presenceOfElementLocated(locator));
