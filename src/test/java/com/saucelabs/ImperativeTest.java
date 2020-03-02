@@ -1,26 +1,12 @@
 package test.java.com.saucelabs;
 
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import io.github.bonigarcia.wdm.WebDriverManager;
-import org.junit.jupiter.api.*;
+import test.java.com.saucelabs.base.TestBase;
 
-class ImperativeTest {
-    protected WebDriver driver;
-
-    @BeforeEach
-    public void setup() {
-        System.setProperty("wdm.targetPath", "lib/drivers/auto/");
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
-    }
-
-    @AfterEach
-    public void teardown() {
-        driver.quit();
-    }
-
+class ImperativeTest extends TestBase {
     @Test
     @DisplayName("Imperative Test")
     void imperative() {

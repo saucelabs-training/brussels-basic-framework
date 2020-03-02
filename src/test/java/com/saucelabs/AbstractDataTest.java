@@ -1,27 +1,13 @@
 package test.java.com.saucelabs;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+import test.java.com.saucelabs.base.TestBase;
 import test.java.com.saucelabs.data.User;
 
-class AbstractDataTest {
-    protected WebDriver driver;
-
-    @BeforeEach
-    public void setup() {
-        System.setProperty("wdm.targetPath", "lib/drivers/auto/");
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
-    }
-
-    @AfterEach
-    public void teardown() {
-        driver.quit();
-    }
-
+class AbstractDataTest extends TestBase {
     @Test
     @DisplayName("Abstract Data Test")
     void abstractData() {
